@@ -23,4 +23,4 @@
  */
 
 // Package idutil is a tool set used to generate multiple id string.
-package idutil // import "github.com/wecoding.top/common/util/idutil"
+package idutil // import "wecoding.top/common/util/idutil"

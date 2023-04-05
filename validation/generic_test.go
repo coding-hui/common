@@ -28,7 +28,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/wecoding.top/common/validation/field"
+	"wecoding.top/common/validation/field"
 )
 
 func TestIsDNS1123Label(t *testing.T) {

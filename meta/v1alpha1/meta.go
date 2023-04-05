@@ -27,7 +27,7 @@ package v1
 import (
 	"time"
 
-	"github.com/wecoding.top/common/scheme"
+	"wecoding.top/common/scheme"
 )
 
 type ObjectMetaAccessor interface {
