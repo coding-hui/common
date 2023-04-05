@@ -91,7 +91,7 @@ type ObjectMeta struct {
 
 	// InstanceID defines a string type resource identifier,
 	// use prefixed to distinguish resource types, easy to remember, Url-friendly.
-	InstanceID string `json:"instanceID,omitempty" gorm:"unique;column:instanceID;type:varchar(32);not null"`
+	InstanceID string `json:"instanceID,omitempty" gorm:"unique;column:instance_id;type:varchar(32);not null"`
 
 	// Required: true
 	// Name must be unique. Is required when creating resources.
@@ -105,7 +105,7 @@ type ObjectMeta struct {
 	Extend Extend `json:"extend,omitempty" gorm:"-" validate:"omitempty"`
 
 	// ExtendShadow is the shadow of Extend. DO NOT modify directly.
-	ExtendShadow string `json:"-" gorm:"column:extendShadow" validate:"omitempty"`
+	ExtendShadow string `json:"-" gorm:"column:extend_shadow" validate:"omitempty"`
 
 	// CreatedAt is a timestamp representing the server time when this object was
 	// created. It is not guaranteed to be set in happens-before order across separate operations.
@@ -114,7 +114,7 @@ type ObjectMeta struct {
 	// Populated by the system.
 	// Read-only.
 	// Null for lists.
-	CreatedAt time.Time `json:"createdAt,omitempty" gorm:"column:createdAt"`
+	CreatedAt time.Time `json:"createdAt,omitempty" gorm:"column:created_at"`
 
 	// UpdatedAt is a timestamp representing the server time when this object was updated.
 	// Clients may not set this value. It is represented in RFC3339 form and is in UTC.
@@ -122,15 +122,16 @@ type ObjectMeta struct {
 	// Populated by the system.
 	// Read-only.
 	// Null for lists.
-	UpdatedAt time.Time `json:"updatedAt,omitempty" gorm:"column:updatedAt"`
+	UpdatedAt time.Time `json:"updatedAt,omitempty" gorm:"column:updated_at"`
 
 	// DeletedAt is RFC 3339 date and time at which this resource will be deleted. This
 	// field is set by the server when a graceful deletion is requested by the user, and is not
 	// directly settable by a client.
 	//
-	// Populated by the system when a graceful deletion is requested.
+	// Populated by the system.
 	// Read-only.
-	// DeletedAt gorm.DeletedAt `json:"-" gorm:"column:deletedAt;index:idx_deletedAt"`
+	// Null for lists.
+	// DeletedAt gorm.DeletedAt `json:"-" gorm:"column:deleted_at;index:idx_deleted_at"`
 }
 
 // BeforeCreate run before create database record.
