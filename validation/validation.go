@@ -34,7 +34,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/go-playground/validator/v10/translations/en"
 
-	"wecoding.top/common/validation/field"
+	"github.com/wecoding.top/common/validation/field"
 )
 
 const (

@@ -31,9 +31,9 @@ import (
 	"strconv"
 	"strings"
 
-	"wecoding.top/common/selection"
-	"wecoding.top/common/util/sets"
-	"wecoding.top/common/validation"
+	"github.com/wecoding.top/common/selection"
+	"github.com/wecoding.top/common/util/sets"
+	"github.com/wecoding.top/common/validation"
 )
 
 // Requirements is AND of all requirements.

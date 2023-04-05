@@ -30,8 +30,8 @@ import (
 	"github.com/sony/sonyflake"
 	"github.com/speps/go-hashids"
 
-	"wecoding.top/common/util/iputil"
-	"wecoding.top/common/util/stringutil"
+	"github.com/wecoding.top/common/util/iputil"
+	"github.com/wecoding.top/common/util/stringutil"
 )
 
 // Defiens alphabet.

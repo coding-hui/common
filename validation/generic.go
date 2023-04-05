@@ -31,7 +31,7 @@ import (
 	"strings"
 	"unicode"
 
-	"wecoding.top/common/validation/field"
+	"github.com/wecoding.top/common/validation/field"
 )
 
 const (

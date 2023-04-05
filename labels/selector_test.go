@@ -30,8 +30,8 @@ import (
 	"strings"
 	"testing"
 
-	"wecoding.top/common/selection"
-	"wecoding.top/common/util/sets"
+	"github.com/wecoding.top/common/selection"
+	"github.com/wecoding.top/common/util/sets"
 )
 
 func TestSelectorParse(t *testing.T) {
