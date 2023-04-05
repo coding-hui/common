@@ -1,4 +1,4 @@
-module wecoding.top/common
+module github.com/coding-hui/common
 
 go 1.19
 

@@ -31,9 +31,9 @@ import (
 	"strconv"
 	"strings"
 
-	"wecoding.top/common/selection"
-	"wecoding.top/common/util/sets"
-	"wecoding.top/common/validation"
+	"github.com/coding-hui/common/selection"
+	"github.com/coding-hui/common/util/sets"
+	"github.com/coding-hui/common/validation"
 )
 
 // Requirements is AND of all requirements.

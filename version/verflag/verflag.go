@@ -31,7 +31,7 @@ import (
 
 	flag "github.com/spf13/pflag"
 
-	"wecoding.top/common/version"
+	"github.com/coding-hui/common/version"
 )
 
 type versionValue int
