@@ -30,8 +30,7 @@ import (
 	"strconv"
 	"strings"
 
-	utilerrors "github.com/marmotedu/errors"
-
+	"github.com/coding-hui/common/errors"
 	"github.com/coding-hui/common/util/sets"
 )
 
@@ -243,7 +242,7 @@ type ErrorList []*Error
 
 // NewErrorTypeMatcher returns an errors.Matcher that returns true
 // if the provided error is a Error and has the provided ErrorType.
-func NewErrorTypeMatcher(t ErrorType) utilerrors.Matcher {
+func NewErrorTypeMatcher(t ErrorType) errors.Matcher {
 	return func(err error) bool {
 		if e, ok := err.(*Error); ok {
 			return e.Type == t
@@ -253,7 +252,7 @@ func NewErrorTypeMatcher(t ErrorType) utilerrors.Matcher {
 }
 
 // ToAggregate converts the ErrorList into an errors.Aggregate.
-func (list ErrorList) ToAggregate() utilerrors.Aggregate {
+func (list ErrorList) ToAggregate() errors.Aggregate {
 	errs := make([]error, 0, len(list))
 	errorMsgs := sets.NewString()
 	for _, err := range list {
@@ -264,10 +263,10 @@ func (list ErrorList) ToAggregate() utilerrors.Aggregate {
 		errorMsgs.Insert(msg)
 		errs = append(errs, err)
 	}
-	return utilerrors.NewAggregate(errs)
+	return errors.NewAggregate(errs)
 }
 
-func fromAggregate(agg utilerrors.Aggregate) ErrorList {
+func fromAggregate(agg errors.Aggregate) ErrorList {
 	errs := agg.Errors()
 	list := make(ErrorList, len(errs))
 	for i := range errs {
@@ -277,11 +276,11 @@ func fromAggregate(agg utilerrors.Aggregate) ErrorList {
 }
 
 // Filter removes items from the ErrorList that match the provided fns.
-func (list ErrorList) Filter(fns ...utilerrors.Matcher) ErrorList {
-	err := utilerrors.FilterOut(list.ToAggregate(), fns...)
+func (list ErrorList) Filter(fns ...errors.Matcher) ErrorList {
+	err := errors.FilterOut(list.ToAggregate(), fns...)
 	if err == nil {
 		return nil
 	}
 	// FilterOut takes an Aggregate and returns an Aggregate
-	return fromAggregate(err.(utilerrors.Aggregate))
+	return fromAggregate(err.(errors.Aggregate))
 }
