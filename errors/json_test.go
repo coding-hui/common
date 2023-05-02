@@ -16,7 +16,7 @@ func TestFrameMarshalText(t *testing.T) {
 		want string
 	}{{
 		initpc,
-		`^github.com/coding-hui/common/errors\.init(\.ializers)? .+/github\.com/marmotedu/errors/stack_test.go:\d+$`,
+		`^github.com/coding-hui/common/errors\.init(\.ializers)? .+/github\.com/coding-hui/common/errors/stack_test.go:\d+$`,
 	}, {
 		0,
 		`^unknown$`,
@@ -38,7 +38,7 @@ func TestFrameMarshalJSON(t *testing.T) {
 		want string
 	}{{
 		initpc,
-		`^"github\.com/marmotedu/errors\.init(\.ializers)? .+/github\.com/marmotedu/errors/stack_test.go:\d+"$`,
+		`^"github\.com/coding-hui/common/errors\.init(\.ializers)? .+/github\.com/coding-hui/common/errors/stack_test.go:\d+"$`,
 	}, {
 		0,
 		`^"unknown"$`,
