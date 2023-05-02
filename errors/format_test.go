@@ -395,7 +395,14 @@ func testFormatRegexp(t *testing.T, n int, arg interface{}, format, want string)
 	wantLines := strings.SplitN(want, "\n", -1)
 
 	if len(wantLines) > len(gotLines) {
-		t.Errorf("test %d: wantLines(%d) > gotLines(%d):\n got: %q\nwant: %q", n+1, len(wantLines), len(gotLines), got, want)
+		t.Errorf(
+			"test %d: wantLines(%d) > gotLines(%d):\n got: %q\nwant: %q",
+			n+1,
+			len(wantLines),
+			len(gotLines),
+			got,
+			want,
+		)
 		return
 	}
 
@@ -481,7 +488,14 @@ func parseBlocks(input string, detectStackboundaries bool) ([]string, error) {
 	return blocks, nil
 }
 
-func testFormatCompleteCompare(t *testing.T, n int, arg interface{}, format string, want []string, detectStackBoundaries bool) {
+func testFormatCompleteCompare(
+	t *testing.T,
+	n int,
+	arg interface{},
+	format string,
+	want []string,
+	detectStackBoundaries bool,
+) {
 	gotStr := fmt.Sprintf(format, arg)
 
 	got, err := parseBlocks(gotStr, detectStackBoundaries)
@@ -490,8 +504,16 @@ func testFormatCompleteCompare(t *testing.T, n int, arg interface{}, format stri
 	}
 
 	if len(got) != len(want) {
-		t.Fatalf("test %d: fmt.Sprintf(%s, err) -> wrong number of blocks: got(%d) want(%d)\n got: %s\nwant: %s\ngotStr: %q",
-			n+1, format, len(got), len(want), prettyBlocks(got), prettyBlocks(want), gotStr)
+		t.Fatalf(
+			"test %d: fmt.Sprintf(%s, err) -> wrong number of blocks: got(%d) want(%d)\n got: %s\nwant: %s\ngotStr: %q",
+			n+1,
+			format,
+			len(got),
+			len(want),
+			prettyBlocks(got),
+			prettyBlocks(want),
+			gotStr,
+		)
 	}
 
 	for i := range got {
@@ -550,7 +572,9 @@ func testGenericRecursive(t *testing.T, beforeErr error, beforeWant []string, li
 
 		// Merge two stacks behind each other.
 		if strings.ContainsAny(beforeWant[last], "\n") && strings.ContainsAny(w.want[0], "\n") {
-			want = append(beforeWant[:last], append([]string{beforeWant[last] + "((?s).*)" + w.want[0]}, w.want[1:]...)...)
+			want = append(
+				beforeWant[:last],
+				append([]string{beforeWant[last] + "((?s).*)" + w.want[0]}, w.want[1:]...)...)
 		} else {
 			want = append(beforeWant, w.want...)
 		}
@@ -569,10 +593,22 @@ func TestFormatCode(t *testing.T) {
 	}{
 		{"%s", `ConfigurationNotValid error`},
 		{"%v", `ConfigurationNotValid error`},
-		{"%-v", `^service configuration could not be loaded - #3 \[.*mocks_test.go:34 \(.*errors.loadConfig\)\] \(1000\) ConfigurationNotValid error$`},
-		{"%+v", `^service configuration could not be loaded - #3 \[.*mocks_test.go:34 \(.*errors.loadConfig\)\] \(1000\) ConfigurationNotValid error; could not decode configuration data - #2 \[.*mocks_test.go:39 \(.*errors.decodeConfig\)\] \(1001\) Data is not valid JSON; could not read configuration file - #1 \[.*mocks_test.go:44 \(.*errors.readConfig\)\] \(1002\) End of input; read: end of input - #0 read: end of input`},
-		{"%#-v", `[{\"caller\":\"#3 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:34 (github.com/coding-hui/common/errors.loadConfig)\",\"code\":1000,\"error\":\"service configuration could not be loaded\",\"message\":\"ConfigurationNotValid error\"}]`},
-		{"%#+v", `[{\"caller\":\"#3 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:34 (github.com/coding-hui/common/errors.loadConfig)\",\"code\":1000,\"error\":\"service configuration could not be loaded\",\"message\":\"ConfigurationNotValid error\"},{\"caller\":\"#2 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:39 (github.com/coding-hui/common/errors.decodeConfig)\",\"code\":1001,\"error\":\"could not decode configuration data\",\"message\":\"Data is not valid JSON\"},{\"caller\":\"#1 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:39 (github.com/coding-hui/common/errors.readConfig)\",\"code\":1002,\"error\":\"could not read configuration file\",\"message\":\"End of input\"},{\"caller\":\"#0\",\"code\":1,\"error\":\"read: end of input\",\"message\":\"read: end of input\"}]`},
+		{
+			"%-v",
+			`^service configuration could not be loaded - #3 \[.*mocks_test.go:34 \(.*errors.loadConfig\)\] \(1000\) ConfigurationNotValid error$`,
+		},
+		{
+			"%+v",
+			`^service configuration could not be loaded - #3 \[.*mocks_test.go:34 \(.*errors.loadConfig\)\] \(1000\) ConfigurationNotValid error; could not decode configuration data - #2 \[.*mocks_test.go:39 \(.*errors.decodeConfig\)\] \(1001\) Data is not valid JSON; could not read configuration file - #1 \[.*mocks_test.go:44 \(.*errors.readConfig\)\] \(1002\) End of input; read: end of input - #0 read: end of input`,
+		},
+		{
+			"%#-v",
+			`[{\"caller\":\"#3 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:34 (github.com/coding-hui/common/errors.loadConfig)\",\"code\":1000,\"error\":\"service configuration could not be loaded\",\"message\":\"ConfigurationNotValid error\"}]`,
+		},
+		{
+			"%#+v",
+			`[{\"caller\":\"#3 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:34 (github.com/coding-hui/common/errors.loadConfig)\",\"code\":1000,\"error\":\"service configuration could not be loaded\",\"message\":\"ConfigurationNotValid error\"},{\"caller\":\"#2 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:39 (github.com/coding-hui/common/errors.decodeConfig)\",\"code\":1001,\"error\":\"could not decode configuration data\",\"message\":\"Data is not valid JSON\"},{\"caller\":\"#1 /home/lk/workspace/golang/src/github.com/coding-hui/common/errors/mocks_test.go:39 (github.com/coding-hui/common/errors.readConfig)\",\"code\":1002,\"error\":\"could not read configuration file\",\"message\":\"End of input\"},{\"caller\":\"#0\",\"code\":1,\"error\":\"read: end of input\",\"message\":\"read: end of input\"}]`,
+		},
 	}
 
 	for i, tt := range tests {

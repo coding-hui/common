@@ -81,7 +81,8 @@ type ObjectMeta struct {
 	// Cannot be updated.
 	Name string `json:"name,omitempty" gorm:"column:name;unique;uniqueIndex;type:varchar(64);not null" validate:"name"`
 
-	// Extend store the fields that need to be added, but do not want to add a new table column, will not be stored in db.
+	// Extend store the fields that need to be added, but do not want to add a new table column, will not be stored in
+	// db.
 	Extend Extend `json:"extend,omitempty" gorm:"-" validate:"omitempty"`
 
 	// ExtendShadow is the shadow of Extend. DO NOT modify directly.

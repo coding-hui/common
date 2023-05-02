@@ -24,7 +24,8 @@ func HomeDir() string {
 	if runtime.GOOS == "windows" {
 		home := os.Getenv("HOME")
 		homeDriveHomePath := ""
-		if homeDrive, homePath := os.Getenv("HOMEDRIVE"), os.Getenv("HOMEPATH"); len(homeDrive) > 0 && len(homePath) > 0 {
+		if homeDrive, homePath := os.Getenv("HOMEDRIVE"), os.Getenv("HOMEPATH"); len(homeDrive) > 0 &&
+			len(homePath) > 0 {
 			homeDriveHomePath = homeDrive + homePath
 		}
 		userProfile := os.Getenv("USERPROFILE")

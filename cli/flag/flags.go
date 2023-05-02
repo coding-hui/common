@@ -39,7 +39,11 @@ func WarnWordSepNormalizeFunc(f *pflag.FlagSet, name string) pflag.NormalizedNam
 	if strings.Contains(name, "_") {
 		nname := strings.Replace(name, "_", "-", -1)
 		if _, alreadyWarned := underscoreWarnings[name]; !alreadyWarned {
-			klog.Warningf("using an underscore in a flag name is not supported. %s has been converted to %s.", name, nname)
+			klog.Warningf(
+				"using an underscore in a flag name is not supported. %s has been converted to %s.",
+				name,
+				nname,
+			)
 			underscoreWarnings[name] = true
 		}
 

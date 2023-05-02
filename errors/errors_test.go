@@ -260,7 +260,14 @@ func TestWithCodef(t *testing.T) {
 		wantCode   int
 		wangString string
 	}{
-		{ConfigurationNotValid, "Configuration %s", "failed", "*withCode", ConfigurationNotValid, `ConfigurationNotValid error`},
+		{
+			ConfigurationNotValid,
+			"Configuration %s",
+			"failed",
+			"*withCode",
+			ConfigurationNotValid,
+			`ConfigurationNotValid error`,
+		},
 	}
 
 	for _, tt := range tests {
@@ -314,8 +321,20 @@ func TestParseCoder(t *testing.T) {
 		wantCode      int
 		wantReference string
 	}{
-		{fmt.Errorf("yes error"), 500, "An internal server error occurred", 1, "http://github.com/coding-hui/common/errors/README.md"},
-		{WithCode(unknownCoder.Code(), "internal error message"), 500, "An internal server error occurred", 1, "http://github.com/coding-hui/common/errors/README.md"},
+		{
+			fmt.Errorf("yes error"),
+			500,
+			"An internal server error occurred",
+			1,
+			"http://github.com/coding-hui/common/errors/README.md",
+		},
+		{
+			WithCode(unknownCoder.Code(), "internal error message"),
+			500,
+			"An internal server error occurred",
+			1,
+			"http://github.com/coding-hui/common/errors/README.md",
+		},
 	}
 
 	for i, tt := range tests {

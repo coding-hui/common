@@ -11,7 +11,12 @@ import (
 )
 
 var (
-	unknownCoder defaultCoder = defaultCoder{1, http.StatusInternalServerError, "An internal server error occurred", "http://github.com/coding-hui/common/errors/README.md"}
+	unknownCoder defaultCoder = defaultCoder{
+		1,
+		http.StatusInternalServerError,
+		"An internal server error occurred",
+		"http://github.com/coding-hui/common/errors/README.md",
+	}
 )
 
 // Coder defines an interface for an error code detail information.
