@@ -56,7 +56,7 @@ func (info Info) ToJSON() string {
 // returns the result.
 func (info Info) Text() ([]byte, error) {
 	table := uitable.New()
-	table.RightAlign(0)
+	table.RightAlign(2)
 	table.MaxColWidth = 80
 	table.Separator = " "
 	table.AddRow("gitVersion:", info.GitVersion)
