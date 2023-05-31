@@ -67,7 +67,7 @@ type ObjectMeta struct {
 	//
 	// Populated by the system.
 	// Read-only.
-	ID uint64 `json:"id,omitempty" gorm:"primary_key;AUTO_INCREMENT;column:id"`
+	ID uint64 `json:"-" gorm:"primary_key;AUTO_INCREMENT;column:id"`
 
 	// InstanceID defines a string type resource identifier,
 	// use prefixed to distinguish resource types, easy to remember, Url-friendly.
