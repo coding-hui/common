@@ -55,7 +55,7 @@ type TypeMeta struct {
 // ListMeta describes metadata that synthetic resources must have, including lists and
 // various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
 type ListMeta struct {
-	TotalCount int64 `json:"totalCount,omitempty"`
+	TotalCount int64 `json:"total,omitempty"`
 }
 
 // ObjectMeta is metadata that all persisted resources must have, which includes all objects
