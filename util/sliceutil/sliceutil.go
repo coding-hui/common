@@ -44,3 +44,12 @@ func FindUint(slice []uint, target uint) bool {
 	}
 	return false
 }
+
+func HasString(slice []string, str string) bool {
+	for _, s := range slice {
+		if s == str {
+			return true
+		}
+	}
+	return false
+}
