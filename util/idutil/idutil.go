@@ -44,7 +44,8 @@ func GetIntID() uint64 {
 }
 
 // GetInstanceID returns id format like: secret-2v69o5
-func GetInstanceID(uid uint64, prefix string) string {
+func GetInstanceID(prefix string) string {
+	uid := GetIntID()
 	hd := hashids.NewData()
 	hd.Alphabet = Alphabet36
 	hd.MinLength = 6
@@ -56,26 +57,6 @@ func GetInstanceID(uid uint64, prefix string) string {
 	}
 
 	i, err := h.Encode([]int{int(uid)})
-	if err != nil {
-		panic(err)
-	}
-
-	return prefix + stringutil.Reverse(i)
-}
-
-// GetUUID36WithMinLen returns id format like: 300m50zn91nwz5.
-func GetUUID36WithMinLen(prefix string, minLen int) string {
-	id := GetIntID()
-	hd := hashids.NewData()
-	hd.MinLength = minLen
-	hd.Alphabet = Alphabet36
-
-	h, err := hashids.NewWithData(hd)
-	if err != nil {
-		panic(err)
-	}
-
-	i, err := h.Encode([]int{int(id)})
 	if err != nil {
 		panic(err)
 	}
