@@ -44,8 +44,7 @@ func GetIntID() uint64 {
 }
 
 // GetInstanceID returns id format like: secret-2v69o5
-func GetInstanceID(prefix string) string {
-	uid := GetIntID()
+func GetInstanceID(uid uint64, prefix string) string {
 	hd := hashids.NewData()
 	hd.Alphabet = Alphabet36
 	hd.MinLength = 6
