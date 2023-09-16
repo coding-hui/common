@@ -21,6 +21,8 @@ type ObjectMetaAccessor interface {
 type Object interface {
 	GetID() uint64
 	SetID(id uint64)
+	GetInstanceID() string
+	SetInstanceID(instanceId string)
 	GetName() string
 	SetName(name string)
 	GetCreatedAt() time.Time
@@ -77,6 +79,8 @@ var _ Object = &ObjectMeta{}
 
 func (meta *ObjectMeta) GetID() uint64                    { return meta.ID }
 func (meta *ObjectMeta) SetID(id uint64)                  { meta.ID = id }
+func (meta *ObjectMeta) GetInstanceID() string            { return meta.InstanceID }
+func (meta *ObjectMeta) SetInstanceID(instanceId string)  { meta.InstanceID = instanceId }
 func (meta *ObjectMeta) GetName() string                  { return meta.Name }
 func (meta *ObjectMeta) SetName(name string)              { meta.Name = name }
 func (meta *ObjectMeta) GetCreatedAt() time.Time          { return meta.CreatedAt }
