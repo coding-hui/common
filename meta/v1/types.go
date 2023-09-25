@@ -156,6 +156,12 @@ type ListOptions struct {
 
 	// Limit specify the number of records to be retrieved.
 	Limit *int64 `json:"limit,omitempty" form:"limit"`
+
+	// Page specify the current page, compatible fields.
+	Page *int64 `json:"page,omitempty" form:"page"`
+
+	// PageSize specify the size per page, compatible fields.
+	PageSize *int64 `json:"pageSize,omitempty" form:"pageSize"`
 }
 
 // ExportOptions is the query options to the standard REST get call.
