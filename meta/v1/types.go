@@ -12,17 +12,34 @@ import (
 )
 
 // Extend defines a new type used to store extended fields.
-type Extend map[string]interface{}
+type Extend interface {
+	// Has returns whether the provided field exists.
+	Has(field string) (exists bool)
 
-// String returns the string format of Extend.
-func (ext Extend) String() string {
+	// Get returns the value for the provided field.
+	Get(field string) (value string)
+
+	String() string
+}
+
+type DefaultExtend map[string]string
+
+func (ext DefaultExtend) String() string {
 	data, _ := json.Marshal(ext)
 	return string(data)
 }
 
-// Merge merge extend fields from extendShadow.
-func (ext Extend) Merge(extendShadow string) Extend {
-	var extend Extend
+func (ext DefaultExtend) Has(field string) (exists bool) {
+	_, exists = ext[field]
+	return exists
+}
+
+func (ext DefaultExtend) Get(field string) (value string) {
+	return ext[field]
+}
+
+func (ext DefaultExtend) Merge(extendShadow string) DefaultExtend {
+	var extend DefaultExtend
 
 	// always trust the extendShadow in the database
 	_ = json.Unmarshal([]byte(extendShadow), &extend)
