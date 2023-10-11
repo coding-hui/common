@@ -12,7 +12,7 @@ import (
 )
 
 // Extend defines a new type used to store extended fields.
-type Extend map[string]string
+type Extend map[string]interface{}
 
 func (ext Extend) String() string {
 	data, _ := json.Marshal(ext)
@@ -24,7 +24,7 @@ func (ext Extend) Has(field string) (exists bool) {
 	return exists
 }
 
-func (ext Extend) Get(field string) (value string) {
+func (ext Extend) Get(field string) (value interface{}) {
 	return ext[field]
 }
 
