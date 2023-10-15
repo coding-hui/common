@@ -14,8 +14,8 @@ import (
 // Extend defines a new type used to store extended fields.
 type Extend map[string]interface{}
 
-func (ext Extend) String() string {
-	data, _ := json.Marshal(ext)
+func (ext Extend) String(sensitiveKeys ...string) string {
+	data, _ := json.Marshal(desensitize(ext, sensitiveKeys))
 	return string(data)
 }
 
@@ -136,7 +136,7 @@ func (obj *ObjectMeta) BeforeUpdate(tx *gorm.DB) error {
 	return nil
 }
 
-// AfterFind run after find to unmarshal a extend shadown string into metav1.Extend struct.
+// AfterFind run after find to unmarshal a extend shadown string into metav1.Config struct.
 func (obj *ObjectMeta) AfterFind(tx *gorm.DB) error {
 	if err := json.Unmarshal([]byte(obj.ExtendShadow), &obj.Extend); err != nil {
 		return err
