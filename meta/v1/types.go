@@ -34,9 +34,7 @@ func (ext Extend) Merge(extendShadow string) Extend {
 	// always trust the extendShadow in the database
 	_ = json.Unmarshal([]byte(extendShadow), &extend)
 	for k, v := range extend {
-		if _, ok := ext[k]; !ok {
-			ext[k] = v
-		}
+		ext[k] = v
 	}
 
 	return ext
