@@ -5,12 +5,13 @@
 package stringutil
 
 import (
+	"unicode"
 	"unicode/utf8"
 
 	"github.com/asaskevich/govalidator"
 )
 
-// Creates an slice of slice values not included in the other given slice.
+// Diff Creates an slice of slice values not included in the other given slice.
 func Diff(base, exclude []string) (result []string) {
 	excludeMap := make(map[string]bool)
 	for _, s := range exclude {
@@ -65,4 +66,14 @@ func Reverse(s string) string {
 		utf8.EncodeRune(buf[size-start:], r)
 	}
 	return string(buf)
+}
+
+// Capitalize make first character upper case
+func Capitalize(s string) string {
+	if len(s) == 0 {
+		return s
+	}
+	runes := []rune(s)
+	runes[0] = unicode.ToUpper(runes[0])
+	return string(runes)
 }
